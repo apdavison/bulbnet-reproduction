@@ -4,6 +4,7 @@ TITLE HH KM channel
 : Andrew Davison, The Babraham Institute, 1998.
 
 NEURON {
+    THREADSAFE
 	SUFFIX kM
 	USEION k READ ek WRITE ik
 	RANGE gkbar, ik

@@ -5,6 +5,7 @@ TITLE HH fast potassium channel with FUNCTION_TABLEs
 : Andrew Davison, The Babraham Institute, 1998.
 
 NEURON {
+    THREADSAFE
 	SUFFIX kfasttab
 	USEION k READ ek WRITE ik
 	RANGE gkbar, ik

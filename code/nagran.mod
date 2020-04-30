@@ -5,6 +5,7 @@ TITLE HH fast sodium channel with FUNCTION_TABLEs
 : Andrew Davison, The Babraham Institute, 1998.
 
 NEURON {
+    THREADSAFE
 	SUFFIX nagrantab
 	USEION na READ ena WRITE ina
 	RANGE gnabar, ina

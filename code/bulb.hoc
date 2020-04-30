@@ -2,28 +2,28 @@
 // Olfactory bulb network model: network specification file
 // Andrew Davison, The Babraham Institute, 2000.
 
-// ¬¬ Initialisation ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+// Â¬Â¬ Initialisation Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬
 
 objref cvode, random
 cvode = new CVode(0)    // start with CVode inactive
 random = new Random(seed)
 objref mit[nmitx][nmity], gran[ngranx][ngrany]
-objref m2gAMPAlist, m2gNMDAlist, g2mlist
+objref m2gAMPAlist, m2gNMDAlist, g2mlist, g2glist
 m2gAMPAlist = new List()
 m2gNMDAlist = new List()
 g2mlist = new List()
+g2glist = new List()
 objref input[nmitx][nmity]
 objref outfile
 outfile = new File()
 strdef filename
 
 
-// ¬¬  Procedures ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+// Â¬Â¬  Procedures Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬
 
 // Create cells --------------------------------------------------------
 
 proc create_cells() { local i,j,p
-  quitmodel = 0
   print "Creating cells. This may take some time."
   for i = 0, nmitx-1 {
     for j = 0, nmity-1 {
@@ -32,9 +32,6 @@ proc create_cells() { local i,j,p
     p = 100*(i*nmity+j)/(nmitx*nmity+ngranx*ngrany)
     printf("\r=== %3d\% ===",p)
     flushf()
-    doNotify() // Although this slows down cell creation, the
-               // process is so long that we have to allow the
-               // user to quit during the creation.
   }
   for i = 0, ngranx-1 {
     for j = 0, ngrany-1 {
@@ -43,7 +40,6 @@ proc create_cells() { local i,j,p
     p = 100*(nmitx*nmity + i*ngrany+j)/(nmitx*nmity+ngranx*ngrany)
     printf("\r=== %3d\% ===",p)
     flushf()
-    doNotify()
   }
   printf("\n")
   access mit[0][0].soma
@@ -94,6 +90,29 @@ proc connect_cells() { local i,j,phi,r,ii,jj,dg,edel // 2 args - dg, fileroot
   outfile.close()
 }
 
+proc connect_gg() { local i,j,k,r,phi,ii,jj,x,y
+  print "Creating granule--granule cell connections"
+  g2glist.remove_all()
+  for i = 0, ngranx-1 {
+    for j = 0, ngrany-1 {
+      for k = 1, isynpergran {
+        ii = i
+        jj = j
+        while (ii == i && jj == j) { // this is to avoid self-connections
+          phi = random.uniform(0,2*PI)
+          r = random.uniform(0,rgg)
+          x = i + r*sin(phi)
+          y = j + r*cos(phi)
+         ii = wrap( nint(x),ngranx )
+         jj = wrap( nint(y),ngrany )
+        }
+        gran[i][j].deep g2glist.append( new NetCon(&v(0.5),gran[ii][jj].GABAAr,-40,iggdelay,iggweight) )
+        //gran[i][j].periph g2glist.append( new NetCon(&v(0.5),gran[ii][jj].GABAAr,-40,iggdelay,iggweight) )
+      }
+    }
+  }
+}
+
 proc set_GABAA_weights() { local i // 1 arg - weight
   for i = 0,g2mlist.count()-1 {
     g2mlist.object(i).weight = $1
@@ -121,13 +140,13 @@ proc randomise_NMDA() { local i // 2 args - mean weight, variance
 }
 
 proc set_NMDA_time_constants() { local i,j, alpha, beta
-				           // 2 args - rise time constant (ms), 
+				           // 2 args - rise time constant (ms),
 				           //     decay time constant (ms)
   if ($1 < 1e-9) { $1 = 1e-9 }
   if ($2 < 1e-9) { $2 = 1e-9 }
   beta = 1/$2
   alpha = 1/$1 - beta
-   
+
 
   for i = 0, ngranx-1 {
     for j = 0, ngrany-1 {
@@ -170,6 +189,26 @@ proc insert_iclamps() { local i,j // 2 args - del dur
   }
 }
 
+proc insert_sineclamps() { local i,j // 3 args - del dur freq
+  // if $1 is negative, delay is randomly chosen in the uniform interval 0,$1
+  for i = 0, nmitx-1 {
+    for j = 0, nmity-1 {
+      mit[i][j].glom input[i][j] = new SineClamp(0.5)
+      input[i][j].dur = $2
+      input[i][j].del = abs($1)
+      input[i][j].freq = $3
+    }
+  }
+  random.uniform(0,abs($1))
+  if ($1 < 0) {
+    for i = 0, nmitx-1 {
+      for j = 0, nmity-1 {
+         input[i][j].del = random.repick()
+      }
+    }
+  }
+}
+
 // Randomise initial conditions ----------------------------------------
 
 proc random_init() { local i,j
@@ -191,15 +230,22 @@ proc random_init() { local i,j
   }
 }
 
-// ¬¬ Create the model ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+// Â¬Â¬ Create the model Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬
 
 create_cells()
 connect_cells(diffglom,fileroot)
-insert_iclamps(-200,tstop)
+if (gg_conn) {
+  connect_gg()
+}
+if (stimfreq > 0) {
+  insert_sineclamps(-200,tstop,stimfreq)
+} else {
+  insert_iclamps(-200,tstop)
+}
 
 // set synaptic properties
 Cdur_NMDA = NMDArisetime
-mg_NMDA = mgconc	
+mg_NMDA = mgconc
 set_AMPA_weights(AMPAweight)
 set_NMDA_weights(NMDAweight)
 set_GABAA_weights(iweight)

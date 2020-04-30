@@ -1,0 +1,20 @@
+set nomultiplot
+set term x11
+set size
+set origin
+set title
+set xlabel
+set ylabel
+set xtics
+set ytics
+set border
+set nogrid
+set nolabel
+set noarrow
+set tmargin
+set bmargin
+set lmargin
+set rmargin
+set nologscale
+set noxzeroaxis
+set noyzeroaxis

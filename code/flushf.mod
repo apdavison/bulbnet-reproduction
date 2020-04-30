@@ -2,6 +2,7 @@
 : cell-creation progress meter.
 
 NEURON {
+    THREADSAFE
 	SUFFIX nothing
 }
 

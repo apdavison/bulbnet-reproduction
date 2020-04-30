@@ -5,6 +5,7 @@ TITLE LCa calcium channel with fixed reversal potential
 
 
 NEURON {
+    THREADSAFE
 	SUFFIX lcafixed
 	USEION ca WRITE ica
 	RANGE gcabar, ica

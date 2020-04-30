@@ -4,6 +4,7 @@ TITLE HH KA channel
 : Andrew Davison, The Babraham Institute, 1998.
 
 NEURON {
+    THREADSAFE
 	SUFFIX kA
 	USEION k READ ek WRITE ik
 	RANGE gkbar, ik

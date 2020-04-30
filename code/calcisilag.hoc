@@ -15,7 +15,7 @@
  * print_gran_raster(fileroot)
  * print_isis(i,j,fileroot)
  * print_isi_stats(fileroot)
- * print_lags(i,j,fileroot) 	
+ * print_lags(i,j,fileroot)
  * print_si(fileroot)
  */
 
@@ -77,8 +77,8 @@ func minisi() { local i,j,min	// find shortest mean ISI
   }
   return min
 }
-      
-  
+
+
 proc rate_array() { local i,j
   for i = 0,nmitx-1 {
     for j = 0, nmity-1 {
@@ -89,10 +89,10 @@ proc rate_array() { local i,j
         outputarray.x[i][j] = 0
       }
     }
-  }  
+  }
   print "Max: ",arraymax(outputarray)
   outputarray.muls(1/arraymax(outputarray))
-} 
+}
 
 proc calc_lags() { local i1,j1,i2,j2,k,minidx,min // 5 args - indices of mitral cells, transient time
     if ($1 > nmitx || $2 > nmity || $3 > nmitx || $4 > nmity) {
@@ -406,6 +406,8 @@ proc print_isi_stats() { // 1 arg - filename root
         outfile.printf("%8.2f%8.2f",isi.mean(),isi.median())
         if (isi.size() > 1) {
           outfile.printf("%8.2f\n",isi.stdev())
+        } else {
+          printf("\n")
         }
       } else { outfile.printf("\n") }
     }
@@ -433,5 +435,12 @@ proc print_si() { // 1 arg - fileroot
   outfile.wopen(filename)
   outfile.printf("Synchronization index: %10.3f\n",synch_index())
   outfile.printf("Phase-locking index:   %10.3f\n",phaselock_index())
+  outfile.close()
+}
+
+proc print_inputs() { // 1 arg - fileroot
+  sprint(filename,"%s.input",$s1)
+  outfile.wopen(filename)
+  inputarray.fprint(outfile)
   outfile.close()
 }

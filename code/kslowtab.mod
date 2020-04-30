@@ -6,6 +6,7 @@ TITLE HH slow potassium channel with FUNCTION_TABLEs
 
 
 NEURON {
+    THREADSAFE
 	SUFFIX kslowtab
 	USEION k READ ek WRITE ik
 	RANGE gkbar, ik

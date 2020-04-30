@@ -1,0 +1,225 @@
+%!PS-Adobe-2.0 EPSF-2.0
+%%Title: {{ filename }}
+%%Creator: Andrew Davison
+%%CreationDate: {{ creation_date }}
+%%DocumentFonts: Helvetica
+%%BoundingBox: 189 359 431 580
+%%Orientation: Portrait
+%%EndComments
+
+
+% Define graph parameters %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/pagewidth 8.5 def
+/margin 1 def
+%/picwidth pagewidth margin sub margin sub def
+% Note: total figure width should be 3.46 inches (8.8 cm)
+/charoffset 0.16 def
+/picwidth 1.6 def
+/arraywidth 0.84 picwidth mul charoffset sub def
+/levels 255 def
+/scalebarlength arraywidth 0.66 mul def
+/scalebarwidth picwidth 0.08 mul def
+/scalebarxoffset picwidth scalebarwidth 2 mul sub def
+/scalebaryoffset arraywidth scalebarlength sub def
+/colourmapindex 0 def  % 0 = grayscale, 1 = colourscale
+
+/Helvetica findfont
+/fontsize 10 def
+fontsize 72 div scalefont
+setfont
+
+72 72 scale
+margin margin translate
+0 setlinewidth
+
+% Define procedures %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+/draw-square{
+  1 dict begin
+    /s exch def
+    newpath
+    0 0 moveto
+    s 0 rlineto
+    0 s rlineto
+    s neg 0 rlineto
+    closepath
+  end
+} def
+
+/draw-rect{
+  2 dict begin
+    /w exch def
+    /h exch def
+    newpath
+    0 0 moveto
+    w 0 rlineto
+    0 h rlineto
+    w neg 0 rlineto
+    closepath
+  end
+} def
+
+/colourmap {
+  1 dict begin
+    /colour exch 1 sub neg def
+    colourmapindex 0 eq
+      {colour setgray}                      % if
+      {1 colour sub 0 colour setrgbcolor}   %else
+    ifelse
+  end
+} def
+
+/draw-scale-bar {
+  gsave
+    4 dict begin
+      scalebarxoffset scalebaryoffset translate
+      0 1 levels 1 sub {
+	/i exch def
+	/y i levels div scalebarlength mul def
+	/l scalebarlength y sub def
+	/colour 1 i levels 1 sub div sub def
+	colour colourmap
+	newpath
+	0 y moveto
+	l scalebarwidth draw-rect
+	fill
+      } for
+      0 setgray
+      0.01 setlinewidth
+      scalebarlength scalebarwidth draw-rect stroke
+      scalebarwidth 1.1 mul 0 moveto
+      %(0) show
+      /Helvetica findfont
+      /fontsize 7 def
+      fontsize 72 div scalefont
+      setfont
+      datamin (    ) cvs show
+      scalebarwidth 1.1 mul scalebarlength fontsize 72 div 0.7 mul sub moveto
+      datamax (    ) cvs show
+      /Helvetica findfont
+      /fontsize 8 def
+      fontsize 72 div scalefont
+      setfont
+      scalebarwidth 1.1 mul scalebarlength 0.45 mul moveto
+      ( Hz) show
+    end
+  grestore
+} def
+
+/draw-element { % <colour> <i> <j> draw-element
+  gsave
+    5 dict begin
+      /i exch def
+      /j exch def
+      %/colour exch datamax div def
+      /colour exch datamin sub datamax datamin sub div def
+      /x i elementwidth mul def
+      /y arraywidth j 1 add elementwidth mul sub def
+      colour colourmap
+      x y translate
+      elementwidth draw-square fill
+    end
+  grestore
+} def
+
+/draw-array { % <data-array> draw-array
+  gsave
+  2 dict begin
+    arraysize 1 sub -1 0 {
+      /i exch def
+      arraysize 1 sub -1 0 {
+	/j exch def
+	i j draw-element
+      } for
+    } for
+    0.01 setlinewidth
+    arraywidth draw-square stroke
+  end
+  grestore
+} def
+
+
+
+
+% Data goes here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+/arraysize 10 def
+/elementwidth arraywidth arraysize div def
+/yoffset picwidth def
+/xoffset picwidth 0.9 mul def
+
+1.8 4 translate
+
+gsave
+/datamax 8 def
+/datamin 4 def
+0 yoffset translate
+charoffset 0 moveto
+{{ data["A"] }}
+draw-array
+%draw-scale-bar
+xoffset 0.5 mul arraywidth 1.1 mul moveto
+(Before stimulus) show
+/Helvetica findfont
+/fontsize 14 def
+fontsize 72 div scalefont
+setfont
+-1 charoffset mul arraywidth 0.88 mul moveto
+(A) show
+grestore
+
+
+gsave
+/datamax 8 def
+/datamin 4 def
+0 0 translate
+charoffset 0 moveto
+{{ data["B"] }}
+draw-array
+%draw-scale-bar
+xoffset 0.5 mul arraywidth 1.1 mul moveto
+(During stimulus) show
+/Helvetica findfont
+/fontsize 14 def
+fontsize 72 div scalefont
+setfont
+-1 charoffset mul arraywidth 0.88 mul moveto
+(B) show
+grestore
+
+gsave
+/datamax 8 def
+/datamin 4 def
+xoffset yoffset translate
+charoffset 0 moveto
+{{ data["C"] }}
+draw-array
+draw-scale-bar
+/Helvetica findfont
+/fontsize 14 def
+fontsize 72 div scalefont
+setfont
+-1 charoffset mul arraywidth 0.88 mul moveto
+(C) show
+grestore
+
+
+gsave
+/datamax 8 def
+/datamin 4 def
+xoffset 0 translate
+charoffset 0 moveto
+{{ data["D"] }}
+draw-array
+%draw-scale-bar
+/Helvetica findfont
+/fontsize 14 def
+fontsize 72 div scalefont
+setfont
+-1 charoffset mul arraywidth 0.88 mul moveto
+(D) show
+grestore
+
+showpage
+
+

@@ -4,6 +4,7 @@ TITLE HH fast sodium channel
 : Andrew Davison, The Babraham Institute, 1998.
 
 NEURON {
+    THREADSAFE
 	SUFFIX nafast
 	USEION na READ ena WRITE ina
 	RANGE gnabar, ina

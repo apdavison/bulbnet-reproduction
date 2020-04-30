@@ -1,0 +1,41 @@
+// experiment_focal.hoc
+// Olfactory bulb network model: experiment file
+//   for focal input.
+// Andrew Davison, The Babraham Institute, 2000.
+
+xopen("calcisilag.hoc")
+
+// *** Setup multithreading
+
+objref pc
+pc = new ParallelContext()
+pc.nthread(n_threads)
+
+// Redefine run() procedure
+proc run() {
+  running_ = 1
+  set_no_input()
+  add_uniform_input(minbg,maxbg)
+  stdinit()
+  continuerun(ttrans)
+  add_focal_input_square(maxinput, (nmitx/2 -1), (nmity/2 -1), stimsize)
+  continuerun(tstop)
+}
+print "Note: run() procedure redefined."
+
+// Process data and print out results
+proc print_results() {
+  print_raster(fileroot)
+  print_gran_raster(fileroot)
+  print_smooth_hist(minisi()/4,fileroot)
+  print_gran_smooth_hist(minisi()/4,fileroot)
+  print_isi_stats(fileroot)
+  print_si(fileroot)
+  print "Results printed to files."
+}
+
+// *** Main
+
+init()
+run()
+print_results()

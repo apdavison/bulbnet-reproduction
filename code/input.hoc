@@ -40,6 +40,21 @@ proc add_focal_input() {  // 4 args - max input, centre coords and half-width of
 }
 
 
+proc add_focal_input_square() {  // 4 args - max input, centre coords and width of spot
+  for i = 0, nmitx-1 {
+    for j = 0, nmity-1 {
+      if ((abs(i - $3) < $4/2) && (abs(j - $2) < $4/2)) {
+        amp = $1
+      } else {
+        amp = 0.0
+      }
+      inputarray.x[i][j] += amp
+      input[i][j].amp = inputarray.x[i][j]
+      print i,j, input[i][j].amp
+    }
+  }
+}
+
 
 proc generate_odour_matrix() { local i,j,r,ix,iy,k,l,min,max
   A = new Matrix(nglom,nof) 	// A is set here and should
@@ -86,7 +101,7 @@ proc generate_odour_matrix() { local i,j,r,ix,iy,k,l,min,max
 
 
 proc read_odour_file() {
-  sprint(odourfile,"odour%d",$1)
+  sprint(odourfile,"../data/odour%d",$1)
   ropen(odourfile)
   for i = 0,nof-1 {
     odour.x[i] = fscan()
@@ -136,3 +151,4 @@ proc glomshock() { local i,j // 3 args - amplitude, delay and duration
     }
   }
 }
+

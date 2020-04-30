@@ -1,13 +1,14 @@
-// granule.tem
+// granuleGG.tem
 // Template for three-compartment granule cell model
+// with granule-granule inhibition
 // Andrew Davison, The Babraham Institute, 2000
 
 begintemplate Gran
-  public soma, periph, deep, AMPAr, NMDAr, spiketimes, spikecount
+  public soma, periph, deep, AMPAr, NMDAr, GABAAr, spiketimes, spikecount
   create soma, periph, deep, s2d, s2p
-  objref AMPAr, NMDAr, spiketimes, spikecount
+  objref AMPAr, NMDAr, GABAAr, spiketimes, spikecount
 
-  proc init() { local Len, Erest, RM, p, q, Atotal, gsp, gsd, AMPAtau, NMDAalpha, NMDAbeta, Erev, rsd, rsp
+  proc init() { local Len, Erest, RM, p, q, Atotal, gsp, gsd, AMPAtau, NMDAalpha, NMDAbeta, GABAAtau, Erev, rsd, rsp, EGABAA
     create soma, periph, deep, s2d, s2p
 
     spiketimes = new Vector()
@@ -26,7 +27,10 @@ begintemplate Gran
     NMDAalpha		= 0.0163	// ms-1
     NMDAbeta		= 0.00292	// ms-1
     AMPAtau		= 5.5		// ms
+    GABAAtau		= 18		// ms
+    GABAAtau2		= 8.3
     Erev		= 0		// mV
+    EGABAA		= -70		// mV
 
     soma {
       L 		= Len
@@ -73,6 +77,9 @@ begintemplate Gran
       insert pas
       e_pas 		= Erest
       g_pas 		= 1/RM
+      GABAAr 		= new ExpSyn(0.5)
+      GABAAr.tau 	= GABAAtau2
+      GABAAr.e 		= EGABAA
     }
     s2d { 
       diam 		= 1

@@ -4,6 +4,7 @@ TITLE Calcium dependent potassium channel
 : Andrew Davison, The Babraham Institute, 1998.
 
 NEURON {
+    THREADSAFE
 	SUFFIX kca
 	USEION k READ ek WRITE ik
 	USEION ca READ cai
