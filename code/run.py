@@ -46,12 +46,15 @@ def write_parameters(P, filename):
 
 
 def run_simulation(parameter_file):
+    print("Running simulation...")
     subprocess.run(f"nrniv {parameter_file} init.hoc",
                    shell=True)
+    print("Simulation complete.")
 
 
 def plot_figure(script, output_dir):
     subprocess.run(f'gnuplot {script}', shell=True, cwd=output_dir)
+    print(f"Generated figure in {output_dir}")
 
 
 def postprocess_postscript(file_path):

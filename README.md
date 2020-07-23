@@ -55,5 +55,7 @@ figure_17  6m 23s
 - NumPy
 - PyYAML
 - Jinja2
+- epstopdf (optional - for converting figure to PDF)
+- ImageMagick (optional - for converting figures to PNG)
 
 For more information, contact andrew.davison@cnrs.fr
