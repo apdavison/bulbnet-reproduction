@@ -601,6 +601,31 @@ def figure_17():
     convert_figure_formats(output_dir)
 
 
+def new_figure_random_variability():
+    output_dir = create_output_dir()
+    P = deepcopy(load_default_parameters("ddi"))
+    P["input_type"] = GLOMSHOCK
+    seeds = (
+        133572, 987209, 357220, 977777, 966801, 396894, 214022, 141958,
+        186752, 186683, 560231, 960032, 430881, 229799, 973396, 786750,
+        280724, 690835, 373176, 158229, 725253, 674083, 359226, 489080,
+        893996, 458915, 825886, 988202, 850007, 603646, 116092, 715846,
+        573034, 118660, 148936, 927211, 154596, 277860, 189048, 436368,
+        393813, 691679, 965216, 590884, 453150, 230314, 677866, 363410,
+        349025, 880214
+    )
+    for seed in seeds:
+        P["seed"] = seed
+        P["fileroot"] = os.path.join(output_dir, f"ddi_baseline_seed_{seed}")
+        parameter_file = P["fileroot"] + "_parameters.hoc"
+        write_parameters(P, parameter_file)
+        run_simulation(parameter_file)
+    #plot_figure("../../code/ddi_baseline.gnu", output_dir)
+    #convert_figure_formats(output_dir)
+
+
+
+
 if __name__ == "__main__":
     for arg in sys.argv[1:]:
         func = eval(arg)
