@@ -612,7 +612,7 @@ def new_figure_random_variability():
         893996, 458915, 825886, 988202, 850007, 603646, 116092, 715846,
         573034, 118660, 148936, 927211, 154596, 277860, 189048, 436368,
         393813, 691679, 965216, 590884, 453150, 230314, 677866, 363410,
-        349025, 880214
+        349025, 880214, 0
     )
     for seed in seeds:
         P["seed"] = seed
@@ -620,8 +620,8 @@ def new_figure_random_variability():
         parameter_file = P["fileroot"] + "_parameters.hoc"
         write_parameters(P, parameter_file)
         run_simulation(parameter_file)
-    #plot_figure("../../code/ddi_baseline.gnu", output_dir)
-    #convert_figure_formats(output_dir)
+    plot_figure("../../code/ddi_random_variability.gnu", output_dir)
+    convert_figure_formats(output_dir)
 
 
 
