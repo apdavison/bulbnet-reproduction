@@ -45,7 +45,7 @@ proc print_results() {
   sprint(filename,"%s.curvs",fileroot)
   outfile.wopen(filename)
   for i = 0, tvec.size()-1 {
-    outfile.printf("%8.3g %8.3g %8.3g %8.3g %8.3g \n",tvec.x[i],igabaa.x[i],vmit.x[i],vgran.x[i],iclamp.x[i])
+    outfile.printf("%6.1f %8.3g %8.3g %8.3g %8.3g \n",tvec.x[i],igabaa.x[i],vmit.x[i],vgran.x[i],iclamp.x[i])
   }
   outfile.close()
   print "Results printed to files"
