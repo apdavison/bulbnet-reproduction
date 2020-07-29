@@ -199,19 +199,22 @@ and similarly for the other figures (2-5 and 7-17; Figure 1 was an illustration 
 For none of the figures were we able to exactly reproduce the orignally published ones, due to differences in the sequences of random numbers.
 %\note{go more into this. We set seeds, I think, but in how many places are RNs used, and are they all governed by the seed. Could try to install older version of NEURON, see if that helps}.
 However, all figures, with the exception of Figure 13 (Figure 11 in this article) gave qualitatively the same result, and were quantitatively very close.
+Figure 2F shows that the result from the original figure lies within the range of results obtained with different random number generator seeds.
 While it is disappointing that we couldn't obtain quantitatively identical results,
 the robustness of the scientific conclusions to differences in random number sequences is a very positive property of the model.
 
 % Figures 2 & 3
 \begin{figure}
     \begin{minipage}{0.48\textwidth}
-        \includegraphics[width=0.96\textwidth]{/home/andrew/projects/bulbnet_reproduction/March2020/results/20200415_151023/ddi_baseline.pdf}
+        \smtincludegraphics[width=0.96\textwidth]{20200727-134735?ddi_random_variability.pdf}
         \caption{Reproduction of Figure 2. The precise number and timing of spikes in the example neuron is different,
                  due to the random element in connecting the networks,
-                 but the shape of the IPSC and the spatial and temporal profiles of the population activity are very similar.}
+                 but the shape of the IPSC and the spatial and temporal profiles of the population activity are very similar.
+                 Panel \textbf{F} is an addition: it shows the IPSC for 50 simulations differing only in the seed to the
+                 random number generator (grey), overlaid with the IPSC from the original Figure 2.}
     \end{minipage}\hfill
     \begin{minipage}{0.48\textwidth}
-        \includegraphics[width=0.96\textwidth]{/home/andrew/projects/bulbnet_reproduction/March2020/results/20200415_151737/ddi_mg.pdf}
+        \smtincludegraphics[width=0.96\textwidth]{20200727-150157?ddi_mg.pdf}
         \caption{Reproduction of Figure 3. The results are visually identical to the original.}
     \end{minipage}
 \end{figure}
@@ -219,14 +222,14 @@ the robustness of the scientific conclusions to differences in random number seq
 % Figures 4 & 5
 \begin{figure}
     \begin{minipage}{0.48\textwidth}
-        \includegraphics[width=0.96\textwidth]{/home/andrew/projects/bulbnet_reproduction/March2020/results/20200430_221540/bulbnet_schoppa_CNQXAPV.pdf}
+        \smtincludegraphics[width=0.96\textwidth]{20200727-151117?bulbnet_schoppa_CNQXAPV.pdf}
         \caption{Reproduction of Figure 4.
         Due to the different, random, connectivity in the reproduction, the individual granule cells show differences
         in their responses (A, B); however at the population level (D), and even at the level of the di-synaptic mitral cell
         response (C), the results are very close to the original, with differences in the fine details of the noise.}
     \end{minipage}\hfill
     \begin{minipage}{0.48\textwidth}
-        \includegraphics[width=0.96\textwidth]{/home/andrew/projects/bulbnet_reproduction/March2020/results/20200415_153039/ddi_nsyn.pdf}
+        \smtincludegraphics[width=0.96\textwidth]{20200727-151518?ddi_nsyn.pdf}
         \caption{Reproduction of Figure 5. %\note{some amplitude differences to look into}
         The precise parameters of the fitted curves are slightly different from the original, but the qualitative shape and
         trend in the effect of synapse number is the same.}
@@ -236,12 +239,12 @@ the robustness of the scientific conclusions to differences in random number seq
 % Figures 7 & 8
 \begin{figure}
     \begin{minipage}{0.48\textwidth}
-        \includegraphics[width=0.96\textwidth]{/home/andrew/projects/bulbnet_reproduction/March2020/results/20200415_153447/ddi_ggconn_vs_baseline.pdf}
+        \smtincludegraphics[width=0.96\textwidth]{20200727-151934?ddi_ggconn_vs_baseline.pdf}
         \caption{Reproduction of Figure 7. While there are differences in the high-frequency components of the responses,
         the detailed forms of the responses are very similar to the originals.}
     \end{minipage}\hfill
     \begin{minipage}{0.48\textwidth}
-        \includegraphics[width=0.96\textwidth]{/home/andrew/projects/bulbnet_reproduction/March2020/results/20200430_121217/odour_baseline.pdf}
+        \smtincludegraphics[width=0.96\textwidth]{20200727-152221?odour_baseline.pdf}
         \caption{Reproduction of Figure 8.
                  The precise number and timing of spikes in individual neurons are different,
                  due to the random element in connecting the networks,
@@ -252,20 +255,20 @@ the robustness of the scientific conclusions to differences in random number seq
 % Figure 9
 \begin{figure}
 \centering
-\includegraphics[width=0.8\textwidth]{/home/andrew/projects/bulbnet_reproduction/March2020/results/20200420_193302/odour_comparison.pdf}
+\smtincludegraphics[width=0.8\textwidth]{20200727-152720?odour_comparison.pdf}
 \caption{Reproduction of Figure 9.}
 \end{figure}
 
 % Figures 10 & 11
 \begin{figure}
     \begin{minipage}{0.48\textwidth}
-        \includegraphics[width=0.96\textwidth]{/home/andrew/projects/bulbnet_reproduction/March2020/results/20200430_131544/bulbnet_odour_maxinput.pdf}
+        \smtincludegraphics[width=0.96\textwidth]{20200727-154141?bulbnet_odour_maxinput.pdf}
         \caption{Reproduction of Figure 10.
         Small differences in the phase-locking index, especially with low input currents,
         are presumably due to random differences in network structure.}
     \end{minipage}\hfill
     \begin{minipage}{0.48\textwidth}
-        \includegraphics[width=0.96\textwidth]{/home/andrew/projects/bulbnet_reproduction/March2020/results/20200430_151321/odour_CNQXAPV.pdf}
+        \smtincludegraphics[width=0.96\textwidth]{20200727-171438?odour_CNQXAPV.pdf}
         \caption{Reproduction of Figure 11. The effect of removing AMPA or NMDA receptors is reproduced.}
     \end{minipage}
 \end{figure}
@@ -273,12 +276,12 @@ the robustness of the scientific conclusions to differences in random number seq
 % Figures 12 & 13
 \begin{figure}
     \begin{minipage}{0.48\textwidth}
-        \includegraphics[width=0.96\textwidth]{/home/andrew/projects/bulbnet_reproduction/March2020/results/20200421_121711/odour_ggconn.pdf}
+        \smtincludegraphics[width=0.96\textwidth]{20200727-172950?odour_ggconn.pdf}
         \caption{Reproduction of Figure 12. The results are qualitatively the same as in the original, with small differences
         in the timinig of individual population activity peaks.}
     \end{minipage}\hfill
     \begin{minipage}{0.48\textwidth}
-        \includegraphics[width=0.96\textwidth]{/home/andrew/projects/bulbnet_reproduction/March2020/results/20200430_161151/odour_g2m_synch.pdf}
+        \smtincludegraphics[width=0.96\textwidth]{20200727-174014?odour_g2m_synch.pdf}
         \caption{Reproduction of Figure 13. This is perhaps the only significant failure to reproduce. The `U'-shaped response
                  in the original figure is missing, and the variability of the responses is lower.
                  Lack of time precluded a more careful examination of the sources of these differences.}
@@ -288,12 +291,12 @@ the robustness of the scientific conclusions to differences in random number seq
 % Figure 14 & 15
 \begin{figure}
     \begin{minipage}{0.48\textwidth}
-        \includegraphics[width=0.96\textwidth]{/home/andrew/projects/bulbnet_reproduction/March2020/results/20200424_152518/odour_periodic.pdf}
+        \smtincludegraphics[width=0.96\textwidth]{20200727-185512?odour_periodic.pdf}
         \caption{Reproduction of Figure 14. The qualitative features of the response are reproduced, despite small differences
         in high-frequency components.}
     \end{minipage}\hfill
     \begin{minipage}{0.48\textwidth}
-        \includegraphics[width=0.96\textwidth]{/home/andrew/projects/bulbnet_reproduction/March2020/results/20200427_133004/bulbnet_latinh_uniform.pdf}
+        \smtincludegraphics[width=0.96\textwidth]{20200727-192636?bulbnet_latinh_uniform.pdf}
         \caption{Reproduction of Figure 15. Some of the code used for the simulations in the original figure could not be found.
         The level of background input therefore had to be set by trial-and-error.
         There are clearly differences in the overall activity levels, but the scientific conclusion of the original,
@@ -304,11 +307,11 @@ the robustness of the scientific conclusions to differences in random number seq
 % Figure 16 & 17
 \begin{figure}
     \begin{minipage}{0.48\textwidth}
-        \includegraphics[width=0.96\textwidth]{/home/andrew/projects/bulbnet_reproduction/March2020/results/20200428_083308/bulbnet_latinh_nonuniform.pdf}
+        \smtincludegraphics[width=0.96\textwidth]{20200727-193602?bulbnet_latinh_nonuniform.pdf}
         \caption{Reproduction of Figure 16. The same comments apply as in the caption to the previous figure.}
     \end{minipage}\hfill
     \begin{minipage}{0.48\textwidth}
-        \includegraphics[width=0.96\textwidth]{/home/andrew/projects/bulbnet_reproduction/March2020/results/20200428_172517/odour_simil.pdf}
+        \smtincludegraphics[width=0.96\textwidth]{20200727-200042?odour_simil.pdf}
         \caption{Reproduction of Figure 17. The assignment of odorant features (`olfactory receptors') to olfactory bulb glomeruli
         (and hence to mitral cells) is random in the model, and hence the input pattern is different in the reproduction compared to
         the original. However, the scientific conclusion of the original, that a small subset of neurons/glomeruli
