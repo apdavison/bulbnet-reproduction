@@ -441,6 +441,6 @@ proc print_si() { // 1 arg - fileroot
 proc print_inputs() { // 1 arg - fileroot
   sprint(filename,"%s.input",$s1)
   outfile.wopen(filename)
-  inputarray.fprint(outfile)
+  inputarray.fprint(0, outfile, "%-8g\n", "")
   outfile.close()
 }
