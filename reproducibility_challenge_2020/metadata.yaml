@@ -75,14 +75,14 @@ language: Hoc
 
 # For example, the URL of the GitHub issue where review actually occured
 review:
-  - url:
+  - url: https://github.com/ReScience/submissions/issues/37
 
 contributors:
-  - name:
+  - name: Tiziano Zito
     orcid:
     role: editor
-  - name:
-    orcid:
+  - name: Nicolas P. Rougier
+    orcid: 0000-0002-6972-589X
     role: reviewer
   - name:
     orcid:
@@ -90,19 +90,19 @@ contributors:
 
 # This information will be provided by the editor
 dates:
-  - received:  November 1, 2018
-  - accepted:
-  - published:
+  - received:  April 30, 2020
+  - accepted:  August 4, 2020
+  - published: August 5, 2020
 
 # This information will be provided by the editor
 article:
-  - number: # Article number will be automatically assigned during publication
-  - doi:    # DOI from Zenodo
-  - url:    # Final PDF URL (Zenodo or rescience website?)
+  - number: 14
+  - doi: 10.5281/zenodo.3972130   
+  - url: https://zenodo.org/record/3972130/files/article.pdf
 
 # This information will be provided by the editor
 journal:
   - name:   "ReScience C"
   - issn:   2430-3658
-  - volume: 4
+  - volume: 6
   - issue:  1
