@@ -1,0 +1,47 @@
+{
+    "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+    "@type": "SoftwareSourceCode",
+    "license": "https://spdx.org/licenses/MIT",
+    "codeRepository": "https://github.com/apdavison/bulbnet-reproduction",
+    "issueTracker": "https://github.com/apdavison/bulbnet-reproduction/issues",
+    "name": "bulbnet-reproduction",
+    "description": "This is a model of the mammalian olfactory bulb for the NEURON simulator. The model contains only mitral and granule cells.\n\nA full description may be found in: Davison A.P., Feng J. and Brown D. (2003) Dendrodendritic inhibition and simulated odor responses in a detailed olfactory bulb network model. J. Neurophysiol. 90:1921-35 http://doi.org/10.1152/jn.00623.2002",
+    "applicationCategory": "neuroscience",
+    "developmentStatus": "active",
+    "referencePublication": "https://doi.org/10.5281/zenodo.3972130",
+    "funder": [
+        {
+            "@type": "Organization",
+            "name": "BBSRC"
+        },
+        {
+            "@type": "Organization",
+            "name": "CNRS"
+        }
+    ],
+    "keywords": [
+        "olfactory bulb",
+        "simulation"
+    ],
+    "programmingLanguage": [
+        "Python",
+        "Hoc",
+        "NMODL"
+    ],
+    "relatedLink": [
+        "https://senselab.med.yale.edu/modeldb/ShowModel?model=2730"
+    ],
+    "author": [
+        {
+            "@type": "Person",
+            "@id": "http://orcid.org/0000-0002-4793-7541",
+            "givenName": "Andrew",
+            "familyName": "Davison",
+            "email": "andrew.davison@cnrs.fr",
+            "affiliation": {
+                "@type": "Organization",
+                "name": "Institut des Neurosciences Paris-Saclay, CNRS/Université Paris-Saclay"
+            }
+        }
+    ]
+}
