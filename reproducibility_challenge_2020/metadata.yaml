@@ -20,8 +20,8 @@ authors:
 # contributions" as name (with no address).
 affiliations:
   - code:    1
-    name:    Institut des Neurosciences Paris-Saclay, UMR 9197 CNRS/Université Paris-Saclay
-    address: Gif-sur-Yvette, France
+    name:    Université Paris-Saclay, CNRS, Institut des neurosciences Paris-Saclay
+    address: 91190, Gif-sur-Yvette, France
 
 # List of keywords (adding the programming language might be a good idea)
 keywords: rescience c, NEURON simulator, Hoc
@@ -48,9 +48,15 @@ replication:
  - doi:  http://doi.org/10.1152/jn.00623.2002
 
 # Don't forget to surround abstract with double quotes
-abstract: "abstract
-           goes
-           here."
+abstract: "This article reports on the experience of reproducing a computational modelling study I
+originally carried out as part of my PhD studies, which was published as Davison, Feng,
+and Brown (2003). The reproduced figures were not quantitatively identical to the originals
+due to differences in the sequences of random numbers obtained, but population responses
+were quantitatively very similar, and the major findings of the original study
+are unchanged in the reproduction. We attribute the relative ease of the reproduction to the
+use of the NEURON simulator and the Gnuplot graphics application, both of which have
+been continuously maintained since the original publication, and have largely preserved
+backwards compatibility."
 
 # Bibliography file (yours)
 bibliography: bibliography.bib
@@ -97,7 +103,7 @@ dates:
 # This information will be provided by the editor
 article:
   - number: 14
-  - doi: 10.5281/zenodo.3972130   
+  - doi: 10.5281/zenodo.3972130
   - url: https://zenodo.org/record/3972130/files/article.pdf
 
 # This information will be provided by the editor
