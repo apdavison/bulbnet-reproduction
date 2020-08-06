@@ -183,13 +183,13 @@ The hand-written Postscript figures have been turned into Jinja templates, which
 All of the code for the reproduction is available at \url{\codeURL} under an MIT Licence.
 \end{sloppypar}
 
-To reproduce Figure 11, say, on the command line run:
+To reproduce Figure~11, say, on the command line run:
 
 \begin{verbatim}
 $ python run.py figure_11
 \end{verbatim}
 
-and similarly for the other figures (2-5 and 7-17; Figure 1 was an illustration of the network structure, Figure 6 an illustration of a proposed mechanism).
+and similarly for the other figures (2-5 and 7-17; Figure~1 was an illustration of the network structure, Figure~6 an illustration of a proposed mechanism).
 
 
 \section{Results}
@@ -198,8 +198,13 @@ and similarly for the other figures (2-5 and 7-17; Figure 1 was an illustration 
 
 For none of the figures were we able to exactly reproduce the orignally published ones, due to differences in the sequences of random numbers.
 %\note{go more into this. We set seeds, I think, but in how many places are RNs used, and are they all governed by the seed. Could try to install older version of NEURON, see if that helps}.
-However, all figures, with the exception of Figure 13 (Figure 11 in this article) gave qualitatively the same result, and were quantitatively very close.
-Figure 2F shows that the result from the original figure lies within the range of results obtained with different random number generator seeds.
+However, all figures, with the exception of Figure~13 (Figure~\ref{fig:13} in this article) gave qualitatively the same result, and were quantitatively very close.
+Responses of individual cells, particularly granule cells (Figure~\ref{fig:2}B) which receive monosynaptic excitation, can be very different from the original,
+as these responses depend strongly on the number of connections a cell receives, and that depends on the random number generator seed.
+However, measures of population activity, for example the population spike time histogram in Figure~\ref{fig:2}E,
+or even individual neuron responses that depend on disynaptic connections, such as the mitral cell inhibitory post-synaptic current (IPSC; Figure~\ref{fig:2}C), are very well preserved in the reproduction.
+Figure~\ref{fig:2}F shows that the mitral cell IPSC from the original figure lies within the range of results obtained with different random number generator seeds.
+
 While it is disappointing that we couldn't obtain quantitatively identical results,
 the robustness of the scientific conclusions to differences in random number sequences is a very positive property of the model.
 
@@ -211,7 +216,7 @@ the robustness of the scientific conclusions to differences in random number seq
                  due to the random element in connecting the networks,
                  but the shape of the IPSC and the spatial and temporal profiles of the population activity are very similar.
                  Panel \textbf{F} is an addition: it shows the IPSC for 50 simulations differing only in the seed to the
-                 random number generator (grey), overlaid with the IPSC from the original Figure 2.}
+                 random number generator (grey), overlaid with the IPSC from the original Figure 2.}\label{fig:2}
     \end{minipage}\hfill
     \begin{minipage}{0.48\textwidth}
         \smtincludegraphics[width=0.96\textwidth]{20200727-150157?ddi_mg.pdf}
@@ -284,7 +289,7 @@ the robustness of the scientific conclusions to differences in random number seq
         \smtincludegraphics[width=0.96\textwidth]{20200727-174014?odour_g2m_synch.pdf}
         \caption{Reproduction of Figure 13. This is perhaps the only significant failure to reproduce. The `U'-shaped response
                  in the original figure is missing, and the variability of the responses is lower.
-                 Lack of time precluded a more careful examination of the sources of these differences.}
+                 Lack of time precluded a more careful examination of the sources of these differences.}\label{fig:13}
     \end{minipage}
 \end{figure}
 
