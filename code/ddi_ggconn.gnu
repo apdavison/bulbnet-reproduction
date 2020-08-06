@@ -1,4 +1,4 @@
-load "../../code/defaults.gnu"
+#load "../../code/defaults.gnu"
 set term post port enhanced mono solid "Helvetica" 10
 
 set output "ddi_ggconn_vs_baseline.eps"

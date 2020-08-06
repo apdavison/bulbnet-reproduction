@@ -1,5 +1,4 @@
 set nomultiplot
-set term x11
 set size
 set origin
 set title
