@@ -33,7 +33,7 @@ keywords: rescience c, NEURON simulator, Hoc
 code:
   - url: https://github.com/apdavison/bulbnet-reproduction
   - doi:
-  - swh:
+  - swh: swh:1:rev:0899bc8af36b50d8cdf5d062562d2721f4602703
 
 # Data URL and DOI (optional if no data)
 data:
